@@ -52,7 +52,6 @@
 <img width="800" alt="스크린샷 2020-09-01 오전 10 32 18" src="https://user-images.githubusercontent.com/26249603/91784855-db530500-ec3e-11ea-8199-e256d0760134.png">
 
 
-
 ## TO-BE 조직 (Vertically-Aligned)
 <img width="800" alt="스크린샷 2020-09-01 오전 10 56 26" src="https://user-images.githubusercontent.com/26249603/91786097-d2176780-ec41-11ea-91ee-89c2ba77784d.png">
 
