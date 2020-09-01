@@ -78,7 +78,7 @@
         - Supporting Domain:  고객관리 : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함.
         
 ### 폴리시 부착 
-<img width="800" alt="스크린샷 2020-09-01 오전 11 48 33" src="https://user-images.githubusercontent.com/26249603/91789235-312caa80-ec49-11ea-8637-4869da5e2cd9.png">
+<img width="589" alt="스크린샷 2020-09-01 오전 11 48 41" src="https://user-images.githubusercontent.com/26249603/91789501-b9ab4b00-ec49-11ea-9271-d411d2dc3500.png">
 
 ### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Res) 
 
