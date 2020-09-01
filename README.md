@@ -154,7 +154,7 @@
 
 
 ### 완성된 모형
-<img width="900" alt="teamB" src="https://user-images.githubusercontent.com/26249603/91807685-46b0cd00-ec67-11ea-8879-4199b01f41bb.png">
+<img width="900" alt="스크린샷 2020-09-01 오후 3 26 21" src="https://user-images.githubusercontent.com/26249603/91808602-88417800-ec67-11ea-9b83-13636fb1aae0.png">
 
 
 
