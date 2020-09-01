@@ -147,7 +147,7 @@
 <img width="800" alt="스크린샷 2020-09-01 오후 2 50 48" src="https://user-images.githubusercontent.com/26249603/91799773-b7a1b600-ec62-11ea-8d45-286c48d86109.png">
 
 
-### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Res) 
+### 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Res) 
 <img width="900" alt="스크린샷 2020-09-01 오후 3 47 21" src="https://user-images.githubusercontent.com/26249603/91811513-9775f500-ec6a-11ea-8e63-c2a9bb5dc9f9.png">
 
 
