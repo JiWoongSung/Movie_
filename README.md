@@ -49,18 +49,18 @@
 
 # 분석/설계
 ## AS-IS 조직 (Horizontally-Aligned)
-<img width="510" alt="스크린샷 2020-09-01 오전 10 32 18" src="https://user-images.githubusercontent.com/26249603/91784855-db530500-ec3e-11ea-8199-e256d0760134.png">
+<img width="800" alt="스크린샷 2020-09-01 오전 10 32 18" src="https://user-images.githubusercontent.com/26249603/91784855-db530500-ec3e-11ea-8199-e256d0760134.png">
 
 
 
 ## TO-BE 조직 (Vertically-Aligned)
-<img width="510" alt="스크린샷 2020-09-01 오전 10 56 26" src="https://user-images.githubusercontent.com/26249603/91786097-d2176780-ec41-11ea-91ee-89c2ba77784d.png">
+<img width="800" alt="스크린샷 2020-09-01 오전 10 56 26" src="https://user-images.githubusercontent.com/26249603/91786097-d2176780-ec41-11ea-91ee-89c2ba77784d.png">
 
 
 ## Event Storming 결과
 * MSAEz 로 모델링한 이벤트스토밍 결과: 
 링크 추후 첨부
-<img width="1140" alt="스크린샷 2020-09-01 오전 10 38 28" src="https://user-images.githubusercontent.com/26249603/91785027-51576c00-ec3f-11ea-84e6-14910dc8e2b1.png">
+<img width="800" alt="스크린샷 2020-09-01 오전 10 38 28" src="https://user-images.githubusercontent.com/26249603/91785027-51576c00-ec3f-11ea-84e6-14910dc8e2b1.png">
 
 ### 이벤트 도출
 ![image](https://user-images.githubusercontent.com/63623995/81629770-e9d2a200-943e-11ea-8a95-02c1bae75b1b.png)
