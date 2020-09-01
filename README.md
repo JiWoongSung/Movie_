@@ -81,31 +81,22 @@
         - Supporting Domain:  고객관리 : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함.
         
 
-### 폴리시 부착 및 컨텍스트 매핑은 MSAEZ 도구 사용하여 진행
-모든 언어를 영어로 변환하여, 유비쿼터스 랭귀지로 소스코드 작성 기반 마련
+### 폴리시 부착 
+
+
+### 폴리시 부착 
+
+
+### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Res) 
+
 
 ### 1차 완성된 모형
 
-![image](https://user-images.githubusercontent.com/63623995/81631247-631fc400-9442-11ea-91d9-feca89fdb137.png)
-
-- 도서 재고 리스트인 View Model 추가
-- customermanagement 서비스 중 예약 취소 시 알람 누락
-
-### 2차 완성된 모형
-
-![image](https://user-images.githubusercontent.com/63623995/81637021-3e324d80-9450-11ea-92f6-a8a9b61f2950.png)
-
-- 고객이 예약 취소 시 고객 관리 서비스 통해 알람 발송되도록 비동기식 커넥션 추가
-- customermanagement 영역 Event가 무의미 하여, aggregate/event 제거 Needs 발생
 
 ### 완성된 모형
 
 ![image](https://user-images.githubusercontent.com/63623995/81639169-2b227c00-9456-11ea-8e93-3a30d4344660.png)
 
-- customermanagement에서 이벤트 만 받아서 카톡 알람 처리하는 것으로 완결
-- 각 Aggregte Attribute
-  - reservation : orderid, userid, bookid, status
-  - stock : bookid, qty
 
 
 ### 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
