@@ -175,11 +175,13 @@
 
 ### 비기능 요구사항에 대한 검증
 
-    
+        마이크로 서비스를 넘나드는 시나리오에 대한 트랜잭션 처리 : 모든 inter-microservice 트랜잭션이 데이터 일관성의 시점이 크리티컬하지 않은 모든 경우가 대부분이라 판단, Eventual Consistency 를 기본으로 채택함.
 
-## (수정예정)헥사고날 아키텍처 다이어그램 도출 
+
+## 헥사고날 아키텍처 다이어그램 도출 
     
-![image](https://user-images.githubusercontent.com/63623995/81639426-e0553400-9456-11ea-8346-be1d2d681305.png)
+<img width="800" alt="스크린샷 2020-09-01 오후 4 50 07" src="https://user-images.githubusercontent.com/26249603/91822828-49192400-ec73-11ea-8bfc-df3433e8a4bf.png">
+
 
     - Chris Richardson, MSA Patterns 참고하여 Inbound adaptor와 Outbound adaptor를 구분함
     - 호출관계에서 PubSub 표현
