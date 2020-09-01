@@ -60,7 +60,7 @@
 ## Event Storming 결과
 * MSAEz 로 모델링한 이벤트스토밍 결과: 
 링크 추후 첨부
-<img width="1211" alt="teamB" src="https://user-images.githubusercontent.com/26249603/91784954-18b79280-ec3f-11ea-8aa0-4e574bb7a270.png">
+<img width="1140" alt="스크린샷 2020-09-01 오전 10 38 28" src="https://user-images.githubusercontent.com/26249603/91785027-51576c00-ec3f-11ea-84e6-14910dc8e2b1.png">
 
 ### 이벤트 도출
 ![image](https://user-images.githubusercontent.com/63623995/81629770-e9d2a200-943e-11ea-8a95-02c1bae75b1b.png)
