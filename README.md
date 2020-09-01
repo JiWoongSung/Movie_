@@ -147,22 +147,19 @@
 <img width="800" alt="스크린샷 2020-09-01 오후 2 50 48" src="https://user-images.githubusercontent.com/26249603/91799773-b7a1b600-ec62-11ea-8d45-286c48d86109.png">
 
 
-### (수정예정)폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Res) 
-
-
-### (수정예정)1차 완성된 모형
+### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Res) 
+<img width="900" alt="스크린샷 2020-09-01 오후 3 47 21" src="https://user-images.githubusercontent.com/26249603/91811513-9775f500-ec6a-11ea-8e63-c2a9bb5dc9f9.png">
 
 
 ### 완성된 모형
 <img width="900" alt="스크린샷 2020-09-01 오후 3 26 21" src="https://user-images.githubusercontent.com/26249603/91808602-88417800-ec67-11ea-9b83-13636fb1aae0.png">
 
 
-
-### (수정예정)완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
-
+### 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
 
 
-### (수정예정)비기능 요구사항에 대한 검증
+
+### 비기능 요구사항에 대한 검증
 
     
 
