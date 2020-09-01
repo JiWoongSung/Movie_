@@ -54,7 +54,7 @@
 
 
 ## TO-BE 조직 (Vertically-Aligned)
-<img width="510" alt="스크린샷 2020-09-01 오전 10 34 09" src="https://user-images.githubusercontent.com/26249603/91784782-b6f72880-ec3e-11ea-87d8-5d01ab323d70.png">
+<img width="510" alt="스크린샷 2020-09-01 오전 10 56 26" src="https://user-images.githubusercontent.com/26249603/91786097-d2176780-ec41-11ea-91ee-89c2ba77784d.png">
 
 
 ## Event Storming 결과
