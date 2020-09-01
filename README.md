@@ -58,10 +58,11 @@
 
 
 ## Event Storming 결과
-* MSAEz 로 모델링한 이벤트스토밍 결과: 링크 추후 첨부 
+* MSAEz 로 모델링한 이벤트스토밍 결과: 
+링크 추후 첨부
+<img width="1211" alt="teamB" src="https://user-images.githubusercontent.com/26249603/91784954-18b79280-ec3f-11ea-8aa0-4e574bb7a270.png">
 
 ### 이벤트 도출
-원할한 토론, 이해를 위해 event-storming 초반은 한글로 작성 및 진행
 ![image](https://user-images.githubusercontent.com/63623995/81629770-e9d2a200-943e-11ea-8a95-02c1bae75b1b.png)
 
 ### 액터, 커맨드 부착하여 읽기 좋게
