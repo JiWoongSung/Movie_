@@ -48,14 +48,15 @@
 
 
 # 분석/설계
+## AS-IS 조직 (Horizontally-Aligned)
+
 
 ## TO-BE 조직 (Vertically-Aligned)
 ![image](https://user-images.githubusercontent.com/63623995/81637644-cf55f400-9451-11ea-9cf3-1b599eb21e5d.png)
 
 
 ## Event Storming 결과
-* MSAEz 로 모델링한 이벤트스토밍 결과: http://msaez.io/#/storming/u41qKiD4gfaXC23EQCoZq4IvtuI2/mine/24b47ed1d8087379fff017f5f6671876/-M71gjp1bQwtcugFX4tl
-
+* MSAEz 로 모델링한 이벤트스토밍 결과: 링크 추후 첨부 
 
 ### 이벤트 도출
 원할한 토론, 이해를 위해 event-storming 초반은 한글로 작성 및 진행
