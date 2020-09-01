@@ -157,14 +157,14 @@
 
 ### 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
 
-!<img width="800" alt="그림1" src="https://user-images.githubusercontent.com/26249603/91811892-300c7500-ec6b-11ea-83af-76066c5e2566.png">
+<img width="800" alt="그림1" src="https://user-images.githubusercontent.com/26249603/91811892-300c7500-ec6b-11ea-83af-76066c5e2566.png">
 
     - 고객이 메뉴를 선택하여 주문한다 (ok)
     - 고객이 결제한다 (ok)
     - 주문이 되면 주문 내역이 입점상점주인에게 전달된다 (ok)
 
 
-!<img width="800" alt="그림12" src="https://user-images.githubusercontent.com/26249603/91811901-326ecf00-ec6b-11ea-9def-4fcb47c1f7c6.png">
+<img width="800" alt="그림12" src="https://user-images.githubusercontent.com/26249603/91811901-326ecf00-ec6b-11ea-9def-4fcb47c1f7c6.png">
 
     - 고객이 메뉴를 선택하여 주문한다 (ok)
     - 고객이 결제한다 (ok)
