@@ -60,32 +60,25 @@
 ## Event Storming 결과
 * MSAEz 로 모델링한 이벤트스토밍 결과: 
 링크 추후 첨부
-<img width="800" alt="스크린샷 2020-09-01 오전 10 38 28" src="https://user-images.githubusercontent.com/26249603/91785027-51576c00-ec3f-11ea-84e6-14910dc8e2b1.png">
 
 ### 이벤트 도출
-![image](https://user-images.githubusercontent.com/63623995/81629770-e9d2a200-943e-11ea-8a95-02c1bae75b1b.png)
+<img width="800" alt="스크린샷 2020-09-01 오전 11 48 15" src="https://user-images.githubusercontent.com/26249603/91789213-2540e880-ec49-11ea-90e1-2099d742161b.png">
 
 ### 액터, 커맨드 부착하여 읽기 좋게
-![image](https://user-images.githubusercontent.com/63623995/81630226-fe636a00-943f-11ea-93d5-67f851180950.png)
+<img width="800" alt="스크린샷 2020-09-01 오전 11 48 20" src="https://user-images.githubusercontent.com/26249603/91789218-27a34280-ec49-11ea-9f83-d22ef7ece82b.png">
 
 ### 어그리게잇으로 묶기
-![image](https://user-images.githubusercontent.com/63623995/81630407-77fb5800-9440-11ea-8957-8cc538b21489.png)
-
-    - 예약, 재고관리, 고객관리 중심으로 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 묶어줌
-
+<img width="800" alt="스크린샷 2020-09-01 오전 11 48 27" src="https://user-images.githubusercontent.com/26249603/91789224-2d008d00-ec49-11ea-8664-f4b68eca0dd2.png">
+    
 ### 바운디드 컨텍스트로 묶기
-![image](https://user-images.githubusercontent.com/63623995/81630582-fce67180-9440-11ea-9b2d-1e201e0c385a.png)
+<img width="800" alt="스크린샷 2020-09-01 오전 11 48 33" src="https://user-images.githubusercontent.com/26249603/91789235-312caa80-ec49-11ea-8637-4869da5e2cd9.png">
 
     - 도메인 서열 분리 
         - Core Domain: 예약관리(front), 재고관리 : 없어서는 안될 핵심 서비스이며, 연간 Up-time SLA 수준은 예약관리 99.999% / 재고관리 90% 목표, 배포주기는 예약관리 1주일 1회 미만/ 고객관리 2주 1회 미만으로 함
         - Supporting Domain:  고객관리 : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함.
         
-
 ### 폴리시 부착 
-
-
-### 폴리시 부착 
-
+<img width="800" alt="스크린샷 2020-09-01 오전 11 48 33" src="https://user-images.githubusercontent.com/26249603/91789235-312caa80-ec49-11ea-8637-4869da5e2cd9.png">
 
 ### 폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Res) 
 
