@@ -1,5 +1,4 @@
-![롯데시네마 로고](https://user-images.githubusercontent.com/26249603/91795190-fa11c580-ec57-11ea-9e18-ed2f35f507b3.png)
-![cgv](https://user-images.githubusercontent.com/26249603/91795277-304f4500-ec58-11ea-883e-c1f0d48aa4e6.jpg)
+<img width="510" alt="스크린샷 2020-09-01 오후 1 38 48" src="https://user-images.githubusercontent.com/26249603/91795398-845a2980-ec58-11ea-8db0-0ca83ac872a1.png">
 
 # 예제 - 영화 예매 시스템 
 
