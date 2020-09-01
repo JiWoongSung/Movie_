@@ -1,4 +1,5 @@
-<img width="510" alt="스크린샷 2020-09-01 오후 1 38 48" src="https://user-images.githubusercontent.com/26249603/91795398-845a2980-ec58-11ea-8db0-0ca83ac872a1.png">
+<img width="733" alt="스크린샷 2020-09-01 오후 2 39 42" src="https://user-images.githubusercontent.com/26249603/91798946-02223300-ec61-11ea-9a97-dba05ddb5279.png">
+
 
 # 예제 - 영화 예매 시스템 
 
