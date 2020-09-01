@@ -49,11 +49,12 @@
 
 # 분석/설계
 ## AS-IS 조직 (Horizontally-Aligned)
-<img width="550" alt="As-is" src="https://user-images.githubusercontent.com/26249603/91784342-a4302400-ec3d-11ea-95bd-0395d021e99f.png">
+<img width="510" alt="스크린샷 2020-09-01 오전 10 32 18" src="https://user-images.githubusercontent.com/26249603/91784855-db530500-ec3e-11ea-8199-e256d0760134.png">
+
 
 
 ## TO-BE 조직 (Vertically-Aligned)
-<img width="550" alt="To-be" src="https://user-images.githubusercontent.com/26249603/91784369-b3af6d00-ec3d-11ea-849e-db1b0655a22d.png">
+<img width="510" alt="스크린샷 2020-09-01 오전 10 34 09" src="https://user-images.githubusercontent.com/26249603/91784782-b6f72880-ec3e-11ea-87d8-5d01ab323d70.png">
 
 
 ## Event Storming 결과
