@@ -73,9 +73,10 @@
 <img width="800" alt="스크린샷 2020-09-01 오전 11 48 33" src="https://user-images.githubusercontent.com/26249603/91789235-312caa80-ec49-11ea-8637-4869da5e2cd9.png">
 
     - 도메인 서열 분리 
-        - Core Domain: 예약관리(front), 재고관리 : 없어서는 안될 핵심 서비스이며, 연간 Up-time SLA 수준은 예약관리 99.999% / 재고관리 90% 목표, 배포주기는 예약관리 1주일 1회 미만/ 고객관리 2주 1회 미만으로 함
-        - Supporting Domain:  고객관리 : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함.
-        
+        - Core Domain: 예약관리(front), 좌석관리 : 없어서는 안될 핵심 서비스이며, 연간 Up-time SLA 수준은 예약관리 99.999% / 재고관리 90% 목표, 배포주기는 예약관리 1주일 1회 미만/ 고객관리 2주 1회 미만으로 함
+        - General Domain:   결제관리 : 결제서비스로 3rd Party 외부 서비스를 사용하는 것이 경쟁력이 높음
+        - Supporting Domain:  고객관리 : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 1주일 1회
+
 ### 폴리시 부착 
 <img width="900" alt="스크린샷 2020-09-01 오전 11 48 41" src="https://user-images.githubusercontent.com/26249603/91789501-b9ab4b00-ec49-11ea-9271-d411d2dc3500.png">
 
@@ -86,7 +87,6 @@
 
 
 ### 완성된 모형
-
 ![image](https://user-images.githubusercontent.com/63623995/81639169-2b227c00-9456-11ea-8e93-3a30d4344660.png)
 
 
