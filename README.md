@@ -130,13 +130,13 @@
 <img width="800" alt="스크린샷 2020-09-01 오전 11 48 15" src="https://user-images.githubusercontent.com/26249603/91789213-2540e880-ec49-11ea-90e1-2099d742161b.png">
 
 ### 액터, 커맨드 부착하여 읽기 좋게
-<img width="800" alt="스크린샷 2020-09-01 오전 11 48 20" src="https://user-images.githubusercontent.com/26249603/91789218-27a34280-ec49-11ea-9f83-d22ef7ece82b.png">
+<img width="800" alt="스크린샷 2020-09-01 오후 2 50 01" src="https://user-images.githubusercontent.com/26249603/91799758-b1133e80-ec62-11ea-8859-43ec061f8360.png">
 
 ### 어그리게잇으로 묶기
-<img width="800" alt="스크린샷 2020-09-01 오전 11 48 27" src="https://user-images.githubusercontent.com/26249603/91789224-2d008d00-ec49-11ea-8664-f4b68eca0dd2.png">
+<img width="800" alt="스크린샷 2020-09-01 오후 2 50 36" src="https://user-images.githubusercontent.com/26249603/91799764-b3759880-ec62-11ea-8fcc-2fdc679a35da.png">
     
 ### 바운디드 컨텍스트로 묶기
-<img width="800" alt="스크린샷 2020-09-01 오전 11 48 33" src="https://user-images.githubusercontent.com/26249603/91789235-312caa80-ec49-11ea-8637-4869da5e2cd9.png">
+<img width="800" alt="스크린샷 2020-09-01 오후 2 50 41" src="https://user-images.githubusercontent.com/26249603/91799768-b5d7f280-ec62-11ea-9140-79b956704900.png">
 
     - 도메인 서열 분리 
         - Core Domain: Booking(예약관리), Seat(좌석관리) : 없어서는 안될 핵심 서비스이며, 연간 Up-time SLA 수준은 예약관리 99.999% / 재고관리 90% 목표, 배포주기는 예약관리 1주일 1회 미만/ 고객관리 2주 1회 미만으로 함
@@ -144,7 +144,8 @@
         - Supporting Domain:  notification(고객관리) : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포 주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함
 
 ### 폴리시 부착 
-<img width="900" alt="스크린샷 2020-09-01 오전 11 48 41" src="https://user-images.githubusercontent.com/26249603/91789501-b9ab4b00-ec49-11ea-9271-d411d2dc3500.png">
+<img width="800" alt="스크린샷 2020-09-01 오후 2 50 48" src="https://user-images.githubusercontent.com/26249603/91799773-b7a1b600-ec62-11ea-8d45-286c48d86109.png">
+
 
 ### (수정예정)폴리시의 이동과 컨텍스트 매핑 (점선은 Pub/Sub, 실선은 Req/Res) 
 
