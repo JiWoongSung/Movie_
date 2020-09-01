@@ -409,8 +409,7 @@ http localhost:8081/bookings bookingId=1 customerId=1 seatIdList=1,2 quantity=2 
 
 
 
-## 비동기식 호출 / 시간적 디커플링 / 장애격리 / 최종 (Eventual) 일관성 테스트
-
+## 비동기식 호출 과 Eventual Consistency
 
 결제가 이루어진 후에 알람 시스템으로 사용자에게 이를 알려주는 행위는 동기식이 아니라 비 동기식으로 처리하여 예약 시스템의 처리를 위하여 결제주문이 블로킹 되지 않도록 처리한다.
 
