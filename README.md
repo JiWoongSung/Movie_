@@ -498,6 +498,7 @@ http localhost:8081/bookings
 - Hystrix 설정: 아래 조건에 해당될 경우 CB 회로가 닫히도록 (요청을 빠르게 실패처리, 차단) 설정
 ```
 # application.yml
+
 feign:
   hystrix:
     enabled: true
@@ -542,6 +543,7 @@ hystrix:
 
 
 # PaymentFallback.java
+
 @Component
 public class PaymentFallback implements PaymentService{
 
@@ -553,6 +555,7 @@ public class PaymentFallback implements PaymentService{
 
 
 # PaymentService.java
+
 @FeignClient(name="payment", url="${api.url.payment}", fallback = PaymentFallback.class)
 public interface PaymentService {
 
