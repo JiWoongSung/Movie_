@@ -287,9 +287,16 @@ http localhost:8081/bookings bookingId=1 customerId=1 seatIdList=1,2 quantity=2 
 
 ## 폴리글랏 퍼시스턴스
 
-Redis DB를 추가적으로 사용
+redis DB를 추가적으로 사용
 
 ![스크린샷 2020-09-02 오후 1 07 04](https://user-images.githubusercontent.com/26249603/91931006-43781880-ed1d-11ea-8491-b11bad1466db.png)
+
+```
+package movieTicket;
+
+코드 추가 예정 
+}
+```
 
 ## 동기식 호출 과 Fallback 처리
 
