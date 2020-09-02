@@ -279,7 +279,7 @@ public interface PaymentRepository extends PagingAndSortingRepository<Payment, L
 }
 ```
 ## CQRS 구현
-CQRS는 bookinglist로 구현
+CQRS는 bookingList로 구현
 
 #첫번째 예시 
 - Input
