@@ -14,6 +14,7 @@
   - [분석/설계](#분석설계)
   - [구현](#구현)
     - [DDD 의 적용](#ddd-의-적용)
+    - [CQRS 구현](#CQRS-구현)
     - [폴리글랏 퍼시스턴스](#폴리글랏-퍼시스턴스)
     - [동기식 호출 과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출 과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
@@ -276,6 +277,53 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 public interface PaymentRepository extends PagingAndSortingRepository<Payment, Long>{
 
 }
+```
+## CQRS 구현
+CQRS는 bookinglist로 구현
+
+- 첫번째 예시 
+Input
+```
+{"eventType":"Booked",
+"timestamp":"20200902075717",
+"customerId":1,"quantity":3,
+"price":2000.0,
+"bookingStatus":"succeeded",
+"seatId":2,
+"bookingId":3,
+"me":true}
+```
+output
+```
+{
+   "_link":{
+      "bookingList":{
+        "href":"http://booking:8080/bookingLists/3"
+      },
+      "self":{
+        "href":"http://booking:8080/bookingLists/3"
+   }
+  },
+  "bookingId": 3,
+  "bookingStatus": "succeeded",
+  "customerId": 1,
+  "notificationId": null,
+  "notificationStatus": null,
+  "paymentId": null,
+  "paymentStatus": null, 
+  "price": 2000.0, 
+  "seatId": null,
+  "seatStatus": null
+}
+```
+
+
+- 두번째 예시 
+```
+```
+
+- 세번째 예시 
+```
 ```
 
 
