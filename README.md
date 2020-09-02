@@ -281,19 +281,20 @@ public interface PaymentRepository extends PagingAndSortingRepository<Payment, L
 ## CQRS 구현
 CQRS는 bookinglist로 구현
 
-- 첫번째 예시 
-Input
+#첫번째 예시 
+- Input
 ```
 {"eventType":"Booked",
 "timestamp":"20200902075717",
-"customerId":1,"quantity":3,
+"customerId":1,
+"quantity":3,
 "price":2000.0,
 "bookingStatus":"succeeded",
 "seatId":2,
 "bookingId":3,
 "me":true}
 ```
-output
+- output
 ```
 {
    "_link":{
@@ -317,13 +318,76 @@ output
 }
 ```
 
+#두번째 예시 
+- Input
+```
+{"eventType":"PaymentSucceeded",
+"timestamp":"20200902075717",
+"paymentId":1431,
+"paymentType":"credit card",
+"bookingId":3,
+"paymentStatus":"succeeded",
+"seatId":2,
+"me":true}
+```
+- output
+```
+{
+   "_link":{
+      "bookingList":{
+        "href":"http://booking:8080/bookingLists/3"
+      },
+      "self":{
+        "href":"http://booking:8080/bookingLists/3"
+   }
+  },
+  "bookingId": 3,
+  "bookingStatus": "succeeded",
+  "customerId": 1,
+  "notificationId": null,
+  "notificationStatus": null,
+  "paymentId": 1431,
+  "paymentStatus": succeeded, 
+  "price": 2000.0, 
+  "seatId": null,
+  "seatStatus": null
+}
+```
 
-- 두번째 예시 
+#세번째 예시 
+- Input
 ```
+{"eventType":"SentSms",
+"timestamp":"20200902075717",
+"notificationId":1435,
+"bookingId":3,
+"phoneNumber":"010-1234-5678",
+"notificationStatus":"send SMS paymentSucceeded",
+"notificationType":"SMS",
+"me":true}
 ```
-
-- 세번째 예시 
+- output
 ```
+{
+   "_link":{
+      "bookingList":{
+        "href":"http://booking:8080/bookingLists/3"
+      },
+      "self":{
+        "href":"http://booking:8080/bookingLists/3"
+   }
+  },
+  "bookingId": 3,
+  "bookingStatus": "succeeded",
+  "customerId": 1,
+  "notificationId": 1435,
+  "notificationStatus": "send SMS paymentSucceeded",
+  "paymentId": 1431,
+  "paymentStatus": "succeeded", 
+  "price": 2000.0, 
+  "seatId": null,
+  "seatStatus": null
+}
 ```
 
 
