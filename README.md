@@ -287,37 +287,9 @@ http localhost:8081/bookings bookingId=1 customerId=1 seatIdList=1,2 quantity=2 
 
 ## 폴리글랏 퍼시스턴스
 
-앱프런트 (app) 는 서비스 특성상 많은 사용자의 유입과 상품 정보의 다양한 콘텐츠를 저장해야 하는 특징으로 인해 RDB 보다는 Document DB / NoSQL 계열의 데이터베이스인 Mongo DB 를 사용하기로 하였다. 이를 위해 order 의 선언에는 @Entity 가 아닌 @Document 로 마킹되었으며, 별다른 작업없이 기존의 Entity Pattern 과 Repository Pattern 적용과 데이터베이스 제품의 설정 (application.yml) 만으로 MongoDB 에 부착시켰다
+Redis DB를 추가적으로 사용
 
-```
-# Order.java
-package fooddelivery;
-
-@Document
-public class Order {
-
-    private String id; // mongo db 적용시엔 id 는 고정값으로 key가 자동 발급되는 필드기 때문에 @Id 나 @GeneratedValue 를 주지 않아도 된다.
-    private String item;
-    private Integer 수량;
-
-}
-
-
-# 주문Repository.java
-package fooddelivery;
-
-public interface 주문Repository extends JpaRepository<Order, UUID>{
-}
-
-# application.yml
-
-  data:
-    mongodb:
-      host: mongodb.default.svc.cluster.local
-    database: mongo-example
-
-```
-
+![스크린샷 2020-09-02 오후 1 07 04](https://user-images.githubusercontent.com/26249603/91931006-43781880-ed1d-11ea-8491-b11bad1466db.png)
 
 ## 동기식 호출 과 Fallback 처리
 
