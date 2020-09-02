@@ -779,4 +779,22 @@ Concurrency:		       95.01
 
 - 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨
 
+# 모니터링
+현재 실행중인 영화 예약 서비스 pod에서는 필요한 부분이 없어서 적용하지 않고, 설정만 해서 별도 pod를 올려서 적용함
+
+- EFS 파일시스템 콘솔 화면 : 
+<img width="400" alt="스크린샷 2020-09-01 오후 2 39 42" src="https://user-images.githubusercontent.com/67447286/91934469-6d820880-ed26-11ea-96d6-db190314ee3b.JPG">
+   
+
+- 2.efs-provisioner.yaml 
+<img width="400" alt="스크린샷 2020-09-01 오후 2 39 42" src="https://user-images.githubusercontent.com/67447286/91934658-de292500-ed26-11ea-8dad-5d299d1fd0e1.JPG">
+   
+- 3.persistentVolumeClaim.yaml
+<img width="400" alt="스크린샷 2020-09-01 오후 2 39 42" src="https://user-images.githubusercontent.com/67447286/91934777-1e88a300-ed27-11ea-9b51-cc9ffedd16fd.JPG">
+   
+- 4. mypod.yaml(PVC적용 pod)
+<img width="400" alt="스크린샷 2020-09-01 오후 2 39 42" src="https://user-images.githubusercontent.com/67447286/91934815-37915400-ed27-11ea-9ad7-4b57a82ea85b.JPG">
+   
+- 5. pvc pod 파일 시스템 확인
+<img width="700" alt="스크린샷 2020-09-01 오후 2 39 42" src="https://user-images.githubusercontent.com/67447286/91934967-92c34680-ed27-11ea-8862-228fab394c38.JPG">
 
