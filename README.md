@@ -720,7 +720,7 @@ booking     4/10      4              33m
 ## 무정지 재배포
 * 먼저 무정지 재배포가 100% 되는 것인지 확인하기 위해서 Autoscaler 이나 CB 설정을 제거함
 
-- seige 로 배포작업 직전에 워크로드를 모니터링 함.
+- seige 로 배포작업 직전에 워크로드를 모니터링 함
 ```
 siege -c100 -t120S -r10 --content-type "application/json" 'http://localhost:8081/booings POST {"bookingId": 1}'
 
@@ -777,6 +777,6 @@ Concurrency:		       95.01
     failureThreshold: 5
 ```
 
-- 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
+- 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨
 
 
