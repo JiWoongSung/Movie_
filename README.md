@@ -294,7 +294,6 @@ http localhost:8081/bookings bookingId=1 customerId=1 seatIdList=1,2 quantity=2 
 
 ```
 # Order.java
-
 package fooddelivery;
 
 @Document
@@ -499,7 +498,6 @@ http localhost:8081/bookings
 - Hystrix 설정: 아래 조건에 해당될 경우 CB 회로가 닫히도록 (요청을 빠르게 실패처리, 차단) 설정
 ```
 # application.yml
-
 feign:
   hystrix:
     enabled: true
@@ -542,8 +540,8 @@ hystrix:
       fallback:
         enabled: true
 
-# PaymentFallback.java
 
+# PaymentFallback.java
 @Component
 public class PaymentFallback implements PaymentService{
 
@@ -553,8 +551,8 @@ public class PaymentFallback implements PaymentService{
     }
 }
 
-# PaymentService.java
 
+# PaymentService.java
 @FeignClient(name="payment", url="${api.url.payment}", fallback = PaymentFallback.class)
 public interface PaymentService {
 
