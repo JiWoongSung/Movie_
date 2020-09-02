@@ -285,11 +285,94 @@ redis DB를 추가적으로 사용
 
 ![스크린샷 2020-09-02 오후 1 07 04](https://user-images.githubusercontent.com/26249603/91931006-43781880-ed1d-11ea-8491-b11bad1466db.png)
 
+- redis관련 소스코드 첨부
 ```
-package movieTicket;
-
-코드 추가 예정 
+@Configuration
+@EnableRedisRepositories
+public class RedisSentinelRepositoryConfig {
+    @Value("${spring.redis.sentinel.master}")
+        private String redisSentinelMasterName;
+    
+    @Value("${spring.redis.sentinel.nodes}")
+        private String redisSentinelNodes;
+    
+    @Value("${spring.redis.database}")
+        private String redisDatabase;
+    
+    @Value("${spring.redis.password}")
+        private String redisPassword;
+  
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
+            RedisSentinelConfiguration SENTINEL_CONFIG = new RedisSentinelConfiguration().master(this.redisSentinelMasterName);
+            List<RedisNode> list = new ArrayList<>();
+                for(String node : this.redisSentinelNodes.split(",")) {
+                    String nodeInfo[] = node.split(":");
+                    list.add(new RedisNode(nodeInfo[0], Integer.parseInt(nodeInfo[1])));
+                }
+                if( list.size() > 0 ) {
+                    SENTINEL_CONFIG.setSentinels(list);
+                }
+                if( redisDatabase != null ) {
+                SENTINEL_CONFIG.setDatabase(Integer.parseInt(redisDatabase));
+                }
+                if( redisPassword != null ) {
+                SENTINEL_CONFIG.setPassword(RedisPassword.of(redisPassword));
+                }
+        return new LettuceConnectionFactory(SENTINEL_CONFIG, LettuceClientConfiguration.defaultConfiguration());
+    }
+ 
+    @Bean
+    public RedisTemplate<?, ?> redisTemplate() {
+            RedisTemplate<byte[], byte[]> redisTemplate = new RedisTemplate<>();
+            redisTemplate.setConnectionFactory(redisConnectionFactory());
+        return redisTemplate;
+    }
 }
+
+# application.yaml
+
+spring:
+  redis:
+    database: 0
+    lettuce:
+      pool:
+        max-active: 20 # Maximum number of connections that can be allocated by the pool at a given time. Use a negative value for no limit.
+        max-idle: 20 # Maximum number of "idle" connections in the pool. Use a negative value to indicate an unlimited number of idle connections.
+        max-wait: -1ms # Maximum amount of time a connection allocation should block before throwing an exception when the pool is exhausted. Use a negative value to block indefinitely.
+        min-idle: 0 # Target for the minimum number of idle connections to maintain in the pool. This setting only has an effect if it is positive.
+      shutdown-timeout: 100ms # Shutdown timeout.
+    password: rhddyd12~!
+    sentinel:
+      master: mymaster # Name of the Redis server.
+      nodes: redis-ha:26379 # Comma-separated list of "host:port" pairs.
+    ssl: false # Whether to enable SSL support.
+ 
+
+@RepositoryRestResource
+public interface ConsumerRepository extends CrudRepository<Consumer, String> {
+ Optional<Consumer> findByApiKey(String apiKey);
+ 
+ List<Consumer> findByServiceEntity_ServiceId(String serviceId);
+}
+
+
+@Getter
+@Setter
+@ToString
+@RedisHash("consumer")
+@TypeAlias("consumer")
+@NoArgsConstructor
+public class Consumer {
+ @Id
+ private String consumerId;   // 고객아이디
+ 
+ @Indexed
+ private String apiKey;     // ApiKey
+ 
+ private String consumerNm;   // 고객명
+ 
+Getter..Setter..
 ```
 
 ## 동기식 호출 과 Fallback 처리
