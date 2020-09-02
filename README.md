@@ -174,7 +174,7 @@
     - 마이크로 서비스를 넘나드는 시나리오에 대한 트랜잭션 처리 : 모든 inter-microservice 트랜잭션이 데이터 일관성의 시점이 크리티컬하지 않은 모든 경우가 대부분이라 판단, Eventual Consistency 를 기본으로 채택함
 
 
-## 헥사고날 아키텍처 다이어그램 도출 
+### 헥사고날 아키텍처 다이어그램 도출 
     
 <img width="800" alt="스크린샷 2020-09-01 오후 4 50 07" src="https://user-images.githubusercontent.com/26249603/91822828-49192400-ec73-11ea-8bfc-df3433e8a4bf.png">
 
@@ -699,7 +699,7 @@ public interface PaymentService {
 2020-09-02 04:22:04.125  INFO 1 --- [io-8080-exec-22] movieTicket.external.PaymentFallback     : hystrix!! fallback
 ```
 
-### 오토스케일 아웃
+## 오토스케일 아웃
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 
 - 오토스케일 로그 예시
