@@ -496,35 +496,73 @@ http localhost:8081/bookings
 
 * 서킷 브레이킹 프레임워크의 선택: Spring FeignClient + Hystrix 옵션을 사용하여 구현함
 
-시나리오는 단말앱(app)-->결제(pay) 시의 연결을 RESTful Request/Response 로 연동하여 구현이 되어있고, 결제 요청이 과도할 경우 CB 를 통하여 장애격리.
-
-- Hystrix 를 설정:  요청처리 쓰레드에서 처리시간이 610 밀리가 넘어서기 시작하여 어느정도 유지되면 CB 회로가 닫히도록 (요청을 빠르게 실패처리, 차단) 설정
+- Hystrix 설정: 아래 조건에 해당될 경우 CB 회로가 닫히도록 (요청을 빠르게 실패처리, 차단) 설정
 ```
 # application.yml
 
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        loggerLevel: BASIC
+        # feign의 전역 timeout 설정 : 5초
+        connectTimeout: 300
+        readTimeout: 300
+
 hystrix:
-  command:
-    # 전역설정
+  threadpool:
     default:
-      execution.isolation.thread.timeoutInMilliseconds: 610
+      coreSize: 100       #Hystrix 스레드 풀의 기본 크기
+      maximumSize: 100    #Hystrix 스레드 풀의 최대 크기
+      maxQueueSize: -1
+      keepAliveTimeMinutes: 1 #hystrix.threadpool.default.maximumSize 값을 사용하기 위한 설정
+      allowMaximumSizeToDivergeFromCoreSize: false
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          #THREAD 방식에서는 서비스 호출이 별도의 스레드에서 수행, SEMAPHORE 방식에서는 서비스 호출을 위해 별도의 스레드를 만들지 않고 단지 각 서비스에 대한 동시 호출 수를 제한할 뿐
+          strategy: THREAD             #THREAD/SEMAPHORE  SEMAPORE는 외부 IO가 없는 경우 사용 권장
+          thread:
+            # Ribbon의 각 timeout보다 커야 기대하는대로 동작함 (
+            timeoutInMilliseconds: 610
+            interruptOnTimeout: true            #Timeout걸리면 Thread 실행 중단
+            interruptOnCancel: false            #Cancle되었을 때 Thread 실행 중단
+      circuitBreaker:
+        requestVolumeThreshold: 5           # 설정수 값만큼 요청이 들어온 경우만 circut open 여부 결정 함 - 즉 이 값이 20으로 설정되어있다면 10초간 19개의 요청이 들어와서 19개가 전부 실패하더라도 서킷 브레이커는 열리지않는다
+        errorThresholdPercentage: 50        # requestVolumn값을 넘는 요청 중 설정 값이상 비율이 에러인 경우 circuit open
+        sleepWindowInMilliseconds: 5000     # 한번 오픈되면 얼마나 오픈할 것인지
+        enabled: true
+        forceOpen: false
+        forceClosed: false
+      fallback:
+        enabled: true
 
-```
+# PaymentFallback.java
 
-- 피호출 서비스(결제:pay) 의 임의 부하 처리 - 400 밀리에서 증감 220 밀리 정도 왔다갔다 하게
-```
-# (pay) 결제이력.java (Entity)
+@Component
+public class PaymentFallback implements PaymentService{
 
-    @PrePersist
-    public void onPrePersist(){  //결제이력을 저장한 후 적당한 시간 끌기
-
-        ...
-        
-        try {
-            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void makePayment(Payment payment) {
+        System.out.println("hystrix!!!");
     }
+}
+
+# PaymentService.java
+
+@FeignClient(name="payment", url="${api.url.payment}", fallback = PaymentFallback.class)
+public interface PaymentService {
+
+    @RequestMapping(method= RequestMethod.POST, path="/payments")
+    public void makePayment(@RequestBody Payment payment);
+
+}
+
 ```
 
 * 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
