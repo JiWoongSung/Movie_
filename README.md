@@ -789,6 +789,7 @@ Concurrency:		       95.01
     timeoutSeconds: 2
     periodSeconds: 5
     failureThreshold: 10
+    
  livenessProbe:
     httpGet:
       path: '/actuator/health'
