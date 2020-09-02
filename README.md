@@ -31,13 +31,12 @@
 2. 고객이 결제를 한다. (동기, 결제 서비스)
 3. 결제가 되면 해당 좌석이 점유된다. (비동기, 좌석 서비스)
 4. 결제가 완료(정상 승인)되면, 결제 상태를 사용자에게 전달한다. (비동기, 알람 서비스)
-(수정)
 5. 고객은 본인의 예약을 취소할 수 있다. 
 6. 예약이 취소되면 결제가 취소된다. (비동기, 결제 서비스)
 7. 결제가 취소되면, 결제 취소 내용을 사용자에게 전달한다. (비동기, 알림서비스)
 8. 결제가 취소되면 해당 좌석의 점유가 해제된다. (비동기, 좌석 서비스)
 9. 결제가 취소되면 예약의 상태가 변경된다. (비동기, 예약 서비스)
-(수정)
+
 
 
 비기능적 요구사항
@@ -268,7 +267,7 @@ public class Payment {
     }
 }
 ```
-- Entity Pattern 과 Repository Pattern 을 적용하여 JPA 를 통하여 다양한 데이터소스 유형 (RDB or NoSQL) 에 대한 별도의 처리가 없도록 데이터 접근 어댑터를 자동 생성하기 위하여 Spring Data REST 의 RestRepository 를 적용하였다
+- Entity Pattern 과 Repository Pattern 을 적용하여 JPA 를 통하여 다양한 데이터소스 유형에 대한 별도의 처리가 없도록 데이터 접근 어댑터를 자동 생성하기 위하여 Spring Data REST 의 RestRepository 를 적용하였다
 ```
 package movieTicket;
 
@@ -278,12 +277,7 @@ public interface PaymentRepository extends PagingAndSortingRepository<Payment, L
 
 }
 ```
-- (수정예정)적용 후 REST API 의 테스트
-```
-# booking 서비스의 예약 처리
-http localhost:8081/bookings bookingId=1 customerId=1 seatIdList=1,2 quantity=2 price=20000 bookingStatus=”booked”
- status로 예약 처리할 때 같이 넣어주는 건지 헷깔려서.. 일단 넣었습니다.
-```
+
 
 ## 폴리글랏 퍼시스턴스
 
@@ -304,7 +298,7 @@ package movieTicket;
 
 - 결제서비스를 호출하기 위하여 Stub과 (FeignClient) 를 이용하여 Service 대행 인터페이스 (Proxy) 를 구현 
 
-```
+```(수정필요)
 package movieTicket.external;
 
 import org.springframework.cloud.openfeign.FeignClient;
@@ -325,22 +319,21 @@ public interface PaymentService {
 ```
 
 - 주문을 받은 직후(@PostPersist) 결제를 요청하도록 처리
-```
+```(수정필요)
 @PostPersist
-public void onPostPersist(){
+    public void onPostPersist(){
+        movieTicket.external.Payment payment = new movieTicket.external.Payment();
 
-    //Following code causes dependency to external APIs
-    // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
+        // mappings goes here
+        payment.setBookingId(this.getBookingId());
+        payment.setTotalPrice(this.getPrice() * this.getQuantity());
+        payment.setSeatId(this.getSeatId());
 
-    movieTicket.external.Payment payment = new movieTicket.external.Payment();
-    // mappings goes here
-    BookingApplication.applicationContext.getBean(movieTicket.external.PaymentService.class)
-        .makePayment(payment);
+        BookingApplication.applicationContext.getBean(movieTicket.external.PaymentService.class)
+            .makePayment(payment);
 
-    Booked booked = new Booked();
-    BeanUtils.copyProperties(this, booked);
-    booked.publishAfterCommit();
-}
+
+    }
 ```
 
 - 동기식 호출에서는 호출 시간에 따른 타임 커플링이 발생하며, 결제 시스템이 장애가 나면 주문도 못받는다는 것을 확인:
@@ -372,14 +365,6 @@ http localhost:8081/bookings bookingId=1 customerId=1 seatIdList=1,2 quantity=2 
 - 이를 위하여 결제이력에 기록을 남긴 후에 곧바로 결제승인이 되었다는 도메인 이벤트를 카프카로 송출한다(Publish)
  
 ```
-package movieTicket;
-
-import javax.persistence.*;
-import org.springframework.beans.BeanUtils;
-import java.util.List;
-
-@Entity
-@Table(name="Payment_table")
 public class Payment {
 
     @Id
@@ -389,48 +374,126 @@ public class Payment {
     private Double totalPrice;
     private String paymentStatus;
     private String paymentType;
+    private Long seatId;
 
     @PostPersist
     public void onPostPersist(){
-        PaymentSucceed paymentSucceed = new PaymentSucceed();
-        BeanUtils.copyProperties(this, paymentSucceed);
-        paymentSucceed.publishAfterCommit();
+        PaymentSucceeded paymentSucceeded = new PaymentSucceeded();
+        BeanUtils.copyProperties(this, paymentSucceeded);
+        paymentSucceeded.publishAfterCommit();
 
 
     }
+
+    @PostUpdate
+    public void onPostUpdate(){
+        PaymentCanceled paymentCanceled = new PaymentCanceled();
+        BeanUtils.copyProperties(this, paymentCanceled);
+        paymentCanceled.publishAfterCommit();
+
+
+    }
+
+
+    public Long getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(Long paymentId) {
+        this.paymentId = paymentId;
+    }
+    public Long getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(Long bookingId) {
+        this.bookingId = bookingId;
+    }
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public Long getSeatId() {
+        return seatId;
+    }
+
+    public void setSeatId(Long seatId) {
+        this.seatId = seatId;
+    }
+
 }
 ```
 - 알람 서비스에서는 결제 승인 이벤트에 대해서 이를 수신하여 자신의 정책을 처리하도록 PolicyHandler 를 구현한다. 실제 구현을 하자면, 카톡 등으로 구현한다. 
   
 ```
-package movieTicket;
-
-import movieTicket.config.kafka.KafkaProcessor;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.stereotype.Service;
-
 @Service
 public class PolicyHandler{
+
+    @Autowired
+    NotificationRepository notificationRepository;
+
+
     @StreamListener(KafkaProcessor.INPUT)
     public void onStringEventListener(@Payload String eventString){
 
     }
 
     @StreamListener(KafkaProcessor.INPUT)
-    public void wheneverPaymentSucceed_SendNotification(@Payload PaymentSucceed paymentSucceed){
+    public void wheneverPaymentSucceed_SendNotification(@Payload PaymentSucceeded paymentSucceeded){
 
-        if(paymentSucceed.isMe()){
-            System.out.println("##### listener SendNotification : " + paymentSucceed.toJson());
+        if(paymentSucceeded.isMe()){
+
+            Notification notification = new Notification();
+            if(("").equals(paymentSucceeded.getBookingId())){
+                notification.setBookingId(5L);
+            }
+            else
+                notification.setBookingId(paymentSucceeded.getBookingId());
+            notification.setNotificationType("SMS");
+            notification.setPhoneNumber("010-1234-5678");
+            notification.setNotificationStatus("send SMS paymentSucceeded");
+
+            notificationRepository.save(notification);
+
+            System.out.println("##### listener SendNotification : " + paymentSucceeded.toJson());
         }
     }
+
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverPaymentCanceled_SendNotification(@Payload PaymentCanceled paymentCanceled){
 
         if(paymentCanceled.isMe()){
+            Notification notification = new Notification();
+            if(("").equals(paymentCanceled.getBookingId())){
+                notification.setBookingId(6L);
+            }
+            else
+                notification.setBookingId(paymentCanceled.getBookingId());
+            notification.setNotificationStatus("sent SMS paymentCanceled");
+            notification.setPhoneNumber("010-1234-5678");
+            notification.setNotificationStatus("send SMS paymentSucceeded");
+
+            notificationRepository.save(notification);
+
+
             System.out.println("##### listener SendNotification : " + paymentCanceled.toJson());
         }
     }
