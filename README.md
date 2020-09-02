@@ -713,7 +713,7 @@ kubectl autoscale deploy pay --min=1 --max=10 --cpu-percent=15
 ```
 - CB 에서 했던 방식대로 워크로드를 2분 동안 걸어준다.
 ```
-siege -c100 -t120S -r10 --content-type "application/json" 'http://localhost:8081/orders POST {"item": "chicken"}'
+siege -c100 -t120S -r10 --content-type "application/json" 'http://localhost:8081/booings POST {"bookingId": 1}' 
 ```
 - 오토스케일이 어떻게 되고 있는지 모니터링을 걸어둔다:
 ```
@@ -722,17 +722,17 @@ kubectl get deploy pay -w
 - 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
 ```
 NAME    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-pay     1         1         1            1           17s
-pay     1         2         1            1           45s
+pay     1         1         1            1           24s
+pay     1         2         1            1           32s
 pay     1         4         1            1           1m
 :
 ```
 - siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
 ```
-Transactions:		        5078 hits
-Availability:		       92.45 %
+Transactions:		        5023 hits
+Availability:		       93.45 %
 Elapsed time:		       120 secs
-Data transferred:	        0.34 MB
+Data transferred:	        0.32 MB
 Response time:		        5.60 secs
 Transaction rate:	       17.15 trans/sec
 Throughput:		        0.01 MB/sec
