@@ -742,7 +742,7 @@ Concurrency:		       96.02
 
 ## 무정지 재배포
 
-배포기간중 Availability 가 평소 100%에서 70% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe/Liveness Probe 를 설정함:
+배포기간중 Availability 가 평소 100%에서 70% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe/Liveness Probe 를 설정함
 
 ```
 # deployment.yaml 의 readiness probe/liveness probe 설정:
