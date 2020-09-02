@@ -542,7 +542,7 @@ public interface PaymentService {
 
 ```
 
-- Hystrix fallback log
+- Hystrix fallback Log
 ```
 2020-09-02 04:22:04.101  INFO 1 --- [io-8080-exec-30] movieTicket.external.PaymentFallback     : hystrix!! fallback
 2020-09-02 04:22:04.104  INFO 1 --- [nio-8080-exec-6] movieTicket.external.PaymentFallback     : hystrix!! fallback
@@ -551,6 +551,7 @@ public interface PaymentService {
 2020-09-02 04:22:04.120  INFO 1 --- [io-8080-exec-25] movieTicket.external.PaymentFallback     : hystrix!! fallback
 2020-09-02 04:22:04.125  INFO 1 --- [io-8080-exec-22] movieTicket.external.PaymentFallback     : hystrix!! fallback
 ```
+
 
 * 부하테스터 siege 툴을 통한 서킷 브레이커 동작 확인:
 - 동시사용자 100명
