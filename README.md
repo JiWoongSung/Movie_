@@ -555,7 +555,7 @@ public interface PaymentService {
 ### 오토스케일 아웃
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 
-오토스케일 로그 예시
+- 오토스케일 로그 예시
 ```
 NAME       READY   UP-TO-DATE   AVAILABLE AGE
 booking     4/4       4              33m
@@ -606,7 +606,7 @@ Throughput:		        0.01 MB/sec
 Concurrency:		       95.01
 
 ```
-배포기간중 Availability 가 평소 100%에서 70% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe/Liveness Probe 를 설정함
+- 배포기간중 Availability 가 평소 100%에서 70% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe/Liveness Probe 를 설정함
 
 ```
 # deployment.yaml 의 readiness probe/liveness probe 설정:
@@ -630,6 +630,6 @@ Concurrency:		       95.01
     failureThreshold: 5
 ```
 
-배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
+- 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
 
