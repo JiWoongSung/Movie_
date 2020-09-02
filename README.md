@@ -463,10 +463,10 @@ public class PolicyHandler{
 알림 시스템은 예약/결제와 완전히 분리되어 있으며, 이벤트 수신에 따라 처리되기 때문에, 알림 시스템이 유지보수로 인해 잠시 내려간 상태라도 예약을 받는데 문제가 없다.
 
 ```
-#알림 서비스 (store) 를 잠시 내려놓음 (ctrl+c)
+#알림 서비스를 잠시 내려놓음 (ctrl+c)
 
 #예약 처리
-http localhost:8081/bookings bookingId=1 customerId=1 seatIdList=1,2 quantity=2 price=20000 bookingStatus=”booked”
+http localhost:8081/bookings bookingId=1 customerId=1 seatId=1 quantity=2 price=20000 bookingStatus=”booked”
 
 #예약상태 확인
 http localhost:8081/bookings 
